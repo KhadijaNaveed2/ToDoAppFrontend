@@ -5,7 +5,7 @@ import { Helmet } from "react-helmet";
 import { Toaster } from "react-hot-toast";
 
 
-const Layout = ({ children, title, description, keywords, author }) => {
+const Layout = ({ children, title, description, keywords, author, onLoginRegisterClick }) => {
   return (
     <div>
       <Helmet>
@@ -15,10 +15,11 @@ const Layout = ({ children, title, description, keywords, author }) => {
         <meta name="author" content={author} />
         <title>{title}</title>
       </Helmet>
-      <Header />
+      <Header onLoginRegisterClick={onLoginRegisterClick} />
       <main style={{ minHeight: "70vh" }}>
         <Toaster />
-        {children}</main>
+        {children}
+      </main>
       <Footer />
     </div>
   );

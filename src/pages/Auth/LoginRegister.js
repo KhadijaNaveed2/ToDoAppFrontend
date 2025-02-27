@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import '../../index.css';
 import { useDispatch, useSelector } from "react-redux";
 import { setAuth } from "../../redux/slices/authSlice"; 
-
 import ForgotPassword from './ForgetPassword.js';
 
 const LoginRegister = ({ onClose }) => {

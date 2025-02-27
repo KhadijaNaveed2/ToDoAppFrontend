@@ -1,9 +1,12 @@
 import React from 'react';
 import Navbar from './Navbar';
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../redux/slices/authSlice";
 
 const Header = ({ onLoginRegisterClick }) => {
-  //   const [auth] = useAuth();
-//   const userRole = auth.user?.role || 0;
+  const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth); 
+  const userRole = auth.user?.role || 0; 
   return (
     <header style={{
       display: 'flex', alignItems: 'center', justifyContent: 'space-between',
@@ -14,6 +17,14 @@ const Header = ({ onLoginRegisterClick }) => {
         ToDoAPP
       </div>
       <Navbar onLoginRegisterClick={onLoginRegisterClick} />
+     
+      {auth.user && (
+        <button 
+          onClick={() => dispatch(logout())} 
+          style={{ marginLeft: '20px', padding: '5px 10px', cursor: 'pointer' }}>
+          Logout
+        </button>
+      )}
     </header>
   );
 }

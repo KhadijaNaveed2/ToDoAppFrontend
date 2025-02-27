@@ -1,17 +1,18 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
-import Layout from './components/Layout/Layout';
-
+import LoginRegister from './pages/Auth/LoginRegister';
 import './index.css';
-
+import CreateTasks from './pages/tasks/CreateTasks';
 const App = () => {
   return (
-    <Layout>
+   
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/Login" element={<LoginRegister />} />
+        <Route path="/create-tasks" element={<CreateTasks />} />
       </Routes>
-    </Layout>
+    
   );
 };
 
