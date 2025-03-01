@@ -61,9 +61,17 @@ const Navbar = ({ onLoginRegisterClick }) => {
       to="/create-tasks"
       className="dropdown-item"
       style={{ padding: "10px", color: "#0056b3", display: "block" }}
-      onClick={() => setDropdownVisible(false)} // Dropdown ko close karne ke liye
+      onClick={() => setDropdownVisible(false)} 
     >
       Create Task
+    </NavLink>
+    <NavLink
+      to="/all-tasks"
+      className="dropdown-item"
+      style={{ padding: "10px", color: "#0056b3", display: "block" }}
+      onClick={() => setDropdownVisible(false)} 
+    >
+      ALL Tasks
     </NavLink>
   </div>
 </div>
