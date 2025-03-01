@@ -33,6 +33,9 @@ const Navbar = ({ onLoginRegisterClick }) => {
   return (
     <nav className="navbar" style={{ display: "flex", alignItems: "center", gap: "20px" }}>
       {/* Home Button */}
+      <NavLink to="/user/profile" className="nav-item" style={{ color: "#0056b3", fontWeight: "bold" }}>
+        <FaHome style={{ marginRight: "5px" }} /> My Profile
+      </NavLink>
       <NavLink to="/" className="nav-item" style={{ color: "#0056b3", fontWeight: "bold" }}>
         <FaHome style={{ marginRight: "5px" }} /> Home
       </NavLink>
@@ -102,6 +105,7 @@ const Navbar = ({ onLoginRegisterClick }) => {
           <FaUser style={{ marginRight: "5px" }} /> Login or Register
         </NavLink>
       )}
+      
     </nav>
   );
 };

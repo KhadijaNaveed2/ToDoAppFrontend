@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   user: null,
-    token: null,
-    isLoginModalOpen: false,
+  token: null,
+  isLoginModalOpen: false,
 };
 
 const authSlice = createSlice({
@@ -20,10 +20,9 @@ const authSlice = createSlice({
       localStorage.removeItem("auth");
     },
     openLoginModal: (state) => {
-      console.log("Login modal opened"); // Debugging ke liye
+      console.log("Login modal opened");
       state.isLoginModalOpen = true;
-  },
-  
+    },
     closeLoginModal: (state) => {
       state.isLoginModalOpen = false;
     },
