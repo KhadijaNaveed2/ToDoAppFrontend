@@ -30,55 +30,66 @@ const Navbar = ({ onLoginRegisterClick }) => {
     };
   }, []);
 
+  const userRole = auth?.user?.role;
+
   return (
     <nav className="navbar" style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-      {/* Home Button */}
+      {/* My Profile */}
       <NavLink to="/user/profile" className="nav-item" style={{ color: "#0056b3", fontWeight: "bold" }}>
         <FaHome style={{ marginRight: "5px" }} /> My Profile
       </NavLink>
+
+      {/* Home */}
       <NavLink to="/" className="nav-item" style={{ color: "#0056b3", fontWeight: "bold" }}>
         <FaHome style={{ marginRight: "5px" }} /> Home
       </NavLink>
 
-      {/* Tasks Dropdown */}
-      <div className="nav-item dropdown" style={{ position: "relative" }} ref={dropdownRef}>
-  <button
-    className="nav-link dropdown-toggle"
-    style={{ background: "none", border: "none", color: "#0056b3", fontWeight: "bold", cursor: "pointer" }}
-    onClick={() => setDropdownVisible(!dropdownVisible)}
-  >
-    <FaTasks style={{ marginRight: "5px" }} /> Tasks
-  </button>
-  
-  <div
-    className="dropdown-menu"
-    style={{
-      position: "absolute",
-      background: "white",
-      boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)",
-      zIndex: 10,
-      display: dropdownVisible ? "block" : "none",
-    }}
-  >
-    <NavLink
-      to="/create-tasks"
-      className="dropdown-item"
-      style={{ padding: "10px", color: "#0056b3", display: "block" }}
-      onClick={() => setDropdownVisible(false)} 
-    >
-      Create Task
-    </NavLink>
-    <NavLink
-      to="/all-tasks"
-      className="dropdown-item"
-      style={{ padding: "10px", color: "#0056b3", display: "block" }}
-      onClick={() => setDropdownVisible(false)} 
-    >
-      ALL Tasks
-    </NavLink>
-  </div>
-</div>
+    
+      {userRole === 1 && (
+        <NavLink to="/users" className="nav-item" style={{ color: "#0056b3", fontWeight: "bold" }}>
+          <FaHome style={{ marginRight: "5px" }} /> All Users
+        </NavLink>
+      )}
 
+   
+      {userRole === 0 && (
+        <div className="nav-item dropdown" style={{ position: "relative" }} ref={dropdownRef}>
+          <button
+            className="nav-link dropdown-toggle"
+            style={{ background: "none", border: "none", color: "#0056b3", fontWeight: "bold", cursor: "pointer" }}
+            onClick={() => setDropdownVisible(!dropdownVisible)}
+          >
+            <FaTasks style={{ marginRight: "5px" }} /> Tasks
+          </button>
+          <div
+            className="dropdown-menu"
+            style={{
+              position: "absolute",
+              background: "white",
+              boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)",
+              zIndex: 10,
+              display: dropdownVisible ? "block" : "none",
+            }}
+          >
+            <NavLink
+              to="/create-tasks"
+              className="dropdown-item"
+              style={{ padding: "10px", color: "#0056b3", display: "block" }}
+              onClick={() => setDropdownVisible(false)}
+            >
+              Create Task
+            </NavLink>
+            <NavLink
+              to="/all-tasks"
+              className="dropdown-item"
+              style={{ padding: "10px", color: "#0056b3", display: "block" }}
+              onClick={() => setDropdownVisible(false)}
+            >
+              ALL Tasks
+            </NavLink>
+          </div>
+        </div>
+      )}
 
       {/* User Authentication */}
       {auth?.user ? (
@@ -105,7 +116,6 @@ const Navbar = ({ onLoginRegisterClick }) => {
           <FaUser style={{ marginRight: "5px" }} /> Login or Register
         </NavLink>
       )}
-      
     </nav>
   );
 };

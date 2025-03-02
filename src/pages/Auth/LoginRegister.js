@@ -39,7 +39,8 @@ const { user, token } = useSelector((state) => state.auth);
                 toast.success(res.data.message);
                 if (!isRegister) {
                     dispatch(setAuth({ user: res.data.user, token: res.data.token })); 
-                    localStorage.setItem('auth', JSON.stringify(res.data)); 
+                    localStorage.setItem('auth', JSON.stringify(res.data));
+
                     navigate('/');
                 } else {
                     setIsRegister(false);

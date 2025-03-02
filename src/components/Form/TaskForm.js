@@ -1,7 +1,7 @@
 import React from "react";
 
-const TaskForm = ({ handleSubmit, value, setValue }) => { // Destructure props
-  //
+const TaskForm = ({ handleSubmit, value, setValue }) => { 
+  
   return (
     <>
       <form onSubmit={handleSubmit}>

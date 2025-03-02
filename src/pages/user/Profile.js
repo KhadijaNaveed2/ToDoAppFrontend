@@ -8,9 +8,9 @@ import { setAuth } from "../../redux/slices/authSlice";
 const Profile = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
-  const ls = localStorage;
 
-  const token = localStorage.getItem("token");
+  const authData = JSON.parse(localStorage.getItem("auth"));
+  const token = authData?.token;
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -31,31 +31,29 @@ const Profile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        const { data } = await axios.put(
-            "http://localhost:5000/api/v1/auth/profile",
-            { name, email, password, phoneno, address },
-            {
-              headers: {
-                Authorization: `Bearer ${token}`, // Token mein "Bearer" aur space ka khayal zaroori hai
-              },
-            }
-          );
-          
-  
+      console.log("Token:", token);
+      const { data } = await axios.put(
+        "http://localhost:5000/api/v1/auth/profile",
+        { name, email, password, phoneno, address },
+        {
+          headers: {
+            Authorization: token ? `Bearer ${token}` : "",
+          },
+        }
+      );
+
       if (!data.success) {
         toast.error(data.message);
       } else {
-        dispatch(setAuth({ user: data.updatedUser, token: token }));
-        localStorage.setItem("token", token);
-
+        dispatch(setAuth({ user: data.updatedUser, token }));
+        localStorage.setItem("auth", JSON.stringify({ user: data.updatedUser, token }));
         toast.success(data.message);
       }
     } catch (error) {
       console.error(error);
-      toast.error("Something went wrong");
+      toast.error(error.response?.data?.message || "Something went wrong");
     }
   };
-  
 
   return (
     <Layout title={"Your Profile - DreamDecor"}>
@@ -112,7 +110,9 @@ const Profile = () => {
                     placeholder="Enter Your Address"
                   />
                 </div>
-                <button type="submit" className="btn btn-primary">UPDATE</button>
+                <button type="submit" className="btn btn-primary">
+                  UPDATE
+                </button>
               </form>
             </div>
           </div>

@@ -7,7 +7,7 @@ import CreateTasks from './pages/tasks/CreateTasks';
 import AllTasks from './pages/tasks/AllTasks';
 import EditTasks from './pages/tasks/EditTasks';
 import Profile from "./pages/user/Profile.js";
-
+import UserData from "./pages/admin/UserData.js";
 
 const App = () => {
   return (
@@ -19,6 +19,7 @@ const App = () => {
         <Route path="/all-tasks" element={<AllTasks />} />
         <Route path="/edit-tasks" element={<EditTasks />} />
         <Route path="/user/profile" element={<Profile/>} />
+        <Route path="/users" element={<UserData />} />
       </Routes>
     
   );
